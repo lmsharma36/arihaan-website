@@ -26,7 +26,20 @@ const contactStructuredData = {
   },
 };
 
+const COUNTRY_CODE_OPTIONS = [
+  { value: "+91", label: "India (+91)" },
+  { value: "+1", label: "USA/Canada (+1)" },
+  { value: "+44", label: "UK (+44)" },
+  { value: "+61", label: "Australia (+61)" },
+  { value: "+65", label: "Singapore (+65)" },
+  { value: "+971", label: "UAE (+971)" },
+  { value: "+966", label: "Saudi Arabia (+966)" },
+  { value: "+974", label: "Qatar (+974)" },
+  { value: "+968", label: "Oman (+968)" },
+];
+
 const Contact = () => {
+  const [countryCode, setCountryCode] = useState("+91");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -44,6 +57,14 @@ const Contact = () => {
     });
   };
 
+  const handlePhoneChange = (e) => {
+    const digitsOnly = String(e.target.value || "").replace(/\D+/g, "");
+    setFormData({
+      ...formData,
+      phone: digitsOnly.slice(0, 15),
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -51,7 +72,12 @@ const Contact = () => {
     setErrorMessage("");
 
     try {
-      const result = await contact.submit(formData);
+      const payload = {
+        ...formData,
+        phone: `${countryCode} ${formData.phone}`.trim(),
+      };
+
+      const result = await contact.submit(payload);
 
       if (result.success) {
         setSuccessMessage(
@@ -218,15 +244,35 @@ const Contact = () => {
 
             <div className="form-group">
               <label>Phone Number *</label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-                placeholder="+91 XXXXX XXXXX"
-                disabled={loading}
-              />
+              <div className="phone-input-row">
+                <select
+                  className="country-code-select"
+                  value={countryCode}
+                  onChange={(e) => setCountryCode(e.target.value)}
+                  disabled={loading}
+                  aria-label="Country code"
+                >
+                  {COUNTRY_CODE_OPTIONS.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handlePhoneChange}
+                  required
+                  inputMode="numeric"
+                  pattern="[0-9]{6,15}"
+                  placeholder="Enter phone number"
+                  disabled={loading}
+                />
+              </div>
+              <small className="phone-help-text">
+                Select country code and enter the remaining number only.
+              </small>
             </div>
 
             <div className="form-group">

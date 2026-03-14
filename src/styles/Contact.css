@@ -120,6 +120,28 @@
   max-width: 640px;
 }
 
+.contact-page .phone-input-row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.contact-page .country-code-select {
+  flex: 0 0 170px;
+  max-width: 50%;
+}
+
+.contact-page .phone-input-row input[name="phone"] {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.contact-page .phone-help-text {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--text-light);
+  font-size: 0.82rem;
+}
+
 @media (min-width: 768px) and (max-width: 1180px) {
   .contact-page .contact-content {
     gap: 2rem;
@@ -154,6 +176,15 @@
 
   .contact-page .contact-item p {
     line-height: 1.5;
+  }
+
+  .contact-page .phone-input-row {
+    gap: 0.45rem;
+  }
+
+  .contact-page .country-code-select {
+    flex-basis: 44%;
+    max-width: 44%;
   }
 }
 
