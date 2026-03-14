@@ -849,10 +849,17 @@ const Products = () => {
         {renderPagination("top")}
 
         {filteredProducts.length === 0 ? (
-          <div className="no-products">
-            <h3>No products found</h3>
-            <p>Try adjusting your filters or search terms</p>
-          </div>
+          !isProductsLoaded ? (
+            <div className="no-products">
+              <div className="products-loading-spinner" />
+              <p>Loading products...</p>
+            </div>
+          ) : (
+            <div className="no-products">
+              <h3>No products found</h3>
+              <p>Try adjusting your filters or search terms</p>
+            </div>
+          )
         ) : (
           <>
             <div className="products-grid">
