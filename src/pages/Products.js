@@ -63,17 +63,17 @@ const readPendingProductRestore = () => {
 const clearPendingProductRestore = () => {
   try {
     sessionStorage.removeItem(PRODUCTS_PENDING_RESTORE_KEY);
+  } catch (error) {
+    // ignore storage errors
+  }
+};
 
-  const savePendingProductRestore = (productId) => {
-    try {
-      sessionStorage.setItem(
-        PRODUCTS_PENDING_RESTORE_KEY,
-        JSON.stringify({ productId: String(productId || "") }),
-      );
-    } catch (error) {
-      // ignore storage errors
-    }
-  };
+const savePendingProductRestore = (productId) => {
+  try {
+    sessionStorage.setItem(
+      PRODUCTS_PENDING_RESTORE_KEY,
+      JSON.stringify({ productId: String(productId || "") }),
+    );
   } catch (error) {
     // ignore storage errors
   }
