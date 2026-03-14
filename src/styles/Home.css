@@ -1,0 +1,40 @@
+/* Home styles - import from App.css */
+
+.home-faq-section {
+  padding: 4rem 1.5rem;
+}
+
+.home-faq-grid {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.home-faq-item {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  backdrop-filter: blur(10px);
+}
+
+.home-faq-item h3 {
+  margin: 0 0 0.5rem;
+  color: var(--deep-navy);
+  font-size: 1rem;
+}
+
+.home-faq-item p {
+  margin: 0;
+  color: var(--text-dark);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .home-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}

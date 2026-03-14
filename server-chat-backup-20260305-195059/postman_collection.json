@@ -1,0 +1,199 @@
+{
+  "info": {
+    "name": "ARIHAAN AI Chat Backend",
+    "_postman_id": "arihaan-chat-api",
+    "description": "API collection for testing ARIHAAN ENTERPRISES AI Chat Assistant Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["health"]
+        },
+        "description": "Check if the backend server is running"
+      },
+      "response": []
+    },
+    {
+      "name": "Send Chat Message",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"What PPE products do you offer?\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "chat"]
+        },
+        "description": "Send a single message to the AI assistant"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat with Context",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"conversationHistory\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Tell me about safety helmets\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"We offer various types of safety helmets from brands like 3M, Honeywell, and MSA.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What about 3M helmets specifically?\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/chat/conversation",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "chat", "conversation"]
+        },
+        "description": "Send a conversation with context for more accurate responses"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Suggestions",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/chat/suggestions",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "chat", "suggestions"]
+        },
+        "description": "Get suggested prompts for users"
+      },
+      "response": []
+    },
+    {
+      "name": "Test - Products Question",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"What are your most popular PPE products?\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "chat"]
+        },
+        "description": "Test question about products"
+      },
+      "response": []
+    },
+    {
+      "name": "Test - Brands Question",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"Which international brands do you carry?\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "chat"]
+        },
+        "description": "Test question about brands"
+      },
+      "response": []
+    },
+    {
+      "name": "Test - Industry Question",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"What safety equipment do you recommend for construction industry?\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "chat"]
+        },
+        "description": "Test question about industries"
+      },
+      "response": []
+    },
+    {
+      "name": "Test - Pricing Question",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"How much do safety helmets cost?\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "chat"]
+        },
+        "description": "Test question about pricing"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}

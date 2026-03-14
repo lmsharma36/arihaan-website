@@ -1,0 +1,70 @@
+{
+  "info": {
+    "name": "Arihaan Fresh Backend API",
+    "_postman_id": "7bb09020-9c38-4e19-8f15-e95cc877f1d1",
+    "description": "API collection for ARIHAAN Fresh backend (products/auth/contact/uploads)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" },
+    { "key": "product_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/products",
+              "host": ["{{base_url}}"],
+              "path": ["api", "products"]
+            }
+          }
+        },
+        {
+          "name": "Create Product (with certification + specifications)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"HELM-001\",\n  \"name\": \"Safety Helmet Classic\",\n  \"slug\": \"safety-helmet-classic\",\n  \"brand\": \"Karam\",\n  \"category\": \"head-hearing-protection\",\n  \"hsn\": \"65061010\",\n  \"tax\": {\n    \"gst_rate\": 18\n  },\n  \"variants\": [\n    { \"size\": \"Standard\", \"color\": \"Yellow\" }\n  ],\n  \"pricing\": {\n    \"price_type\": \"price_on_request\",\n    \"display_label\": \"Price on Request\"\n  },\n  \"images\": [\n    \"/uploads/images/helmet-1.jpg\"\n  ],\n  \"datasheet\": \"/uploads/datasheets/helmet.pdf\",\n  \"certification\": [\n    \"IS 2925:1984\",\n    \"EN 397:2012\"\n  ],\n  \"specifications\": {\n    \"Material\": \"HDPE\",\n    \"Weight\": \"380g\",\n    \"Adjustable\": \"Yes\",\n    \"Colors\": \"White, Yellow, Blue, Red, Green, Orange, Sky Blue, Grey, Pink\"\n  },\n  \"active\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/products",
+              "host": ["{{base_url}}"],
+              "path": ["api", "products"]
+            }
+          }
+        },
+        {
+          "name": "Update Product (with certification + specifications)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"certification\": [\n    \"IS 2925:1984\",\n    \"EN 397:2012\",\n    \"CE Marked\"\n  ],\n  \"specifications\": {\n    \"Material\": \"HDPE\",\n    \"Weight\": \"380g\",\n    \"Adjustable\": \"Yes\",\n    \"Colors\": \"White, Yellow, Blue, Red, Green, Orange, Sky Blue, Grey, Pink\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/products/{{product_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "products", "{{product_id}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

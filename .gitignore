@@ -1,0 +1,8 @@
+node_modules
+
+# Local environment files
+.env
+server/.env
+
+# Backup artifacts
+backups/*.zip

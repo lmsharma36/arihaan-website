@@ -1,0 +1,32 @@
+{
+  "base": "http://localhost:5000",
+  "steps": [
+    {
+      "step": "root",
+      "status": 200
+    },
+    {
+      "step": "login",
+      "status": 200,
+      "ok": true,
+      "hasToken": true
+    },
+    {
+      "step": "products",
+      "status": 200,
+      "hasProductId": true
+    },
+    {
+      "step": "put_images",
+      "status": 200,
+      "ok": true,
+      "bodyPreview": "{\"success\":true,\"message\":\"Product images updated successfully\",\"product\":{\"tax\":{\"gst_rate\":18},\"pricing\":{\"price_type\":\"price_on_request\",\"display_label\":\"Price on Request\"},\"_id\":\"6999d32de0db137657b12ca3\",\"sku\":\"UD-D"
+    },
+    {
+      "step": "put_datasheet",
+      "status": 200,
+      "ok": true,
+      "bodyPreview": "{\"success\":true,\"message\":\"Product datasheet updated successfully\",\"product\":{\"tax\":{\"gst_rate\":18},\"pricing\":{\"price_type\":\"price_on_request\",\"display_label\":\"Price on Request\"},\"_id\":\"6999d32de0db137657b12ca3\",\"sku\":\"U"
+    }
+  ]
+}

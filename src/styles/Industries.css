@@ -1,0 +1,11 @@
+/* Industries styles - import from App.css */
+
+.industries-page .industry-card h3 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}

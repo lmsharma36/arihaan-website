@@ -1,0 +1,142 @@
+/* Footer styles - import from App.css */
+
+.footer {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.05),
+    rgba(30, 41, 59, 0.12)
+  );
+  padding: 40px 5%;
+  color: var(--text-dark);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns:
+    minmax(280px, 2fr) minmax(170px, 1fr) minmax(240px, 1.1fr)
+    minmax(220px, 1fr);
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.footer-about {
+  min-width: 0;
+}
+
+.footer-section {
+  min-width: 0;
+}
+
+.footer-section h4 {
+  margin-bottom: 12px;
+  color: var(--deep-navy);
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.footer-section a {
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+
+.footer-section a:hover {
+  color: var(--primary-orange);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 24px auto 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-categories-columns {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.footer-categories-columns .col {
+  flex: 1 1 0;
+  display: flex;
+}
+
+.footer-categories-columns .col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.footer-categories-columns .col-divider {
+  width: 1px;
+  background: var(--glass-border);
+  align-self: stretch;
+  margin: 4px 2px;
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+  .footer {
+    padding: 32px 4%;
+  }
+
+  .footer-content {
+    grid-template-columns:
+      minmax(0, 1.35fr) minmax(0, 0.95fr) minmax(0, 1.2fr)
+      minmax(0, 1.05fr);
+    gap: 20px;
+  }
+
+  .footer-categories-columns a {
+    word-break: keep-all;
+    overflow-wrap: normal;
+    hyphens: none;
+  }
+
+  .footer-about {
+    grid-column: 1;
+  }
+
+  .footer-bottom {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    gap: 20px;
+  }
+  .footer-content,
+  .footer-bottom {
+    padding: 0 16px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-categories-columns {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .footer-categories-columns .col-divider {
+    display: none;
+  }
+}
