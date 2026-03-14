@@ -1868,6 +1868,18 @@ const getMissingRequiredFields = (payload = {}) =>
     (field) => !pickStringWithFallback(payload[field]),
   );
 
+const findProductByIdentifier = async (rawIdentifier = "") => {
+  const identifier = asCleanString(rawIdentifier);
+  if (!identifier) return null;
+
+  if (mongoose.Types.ObjectId.isValid(identifier)) {
+    const byId = await Product.findById(identifier);
+    if (byId) return byId;
+  }
+
+  return Product.findOne({ slug: identifier.toLowerCase() });
+};
+
 // @route   GET /api/products
 // @desc    Get all products (with filters)
 // @access  Public
@@ -1928,16 +1940,7 @@ router.get("/ai-status", [auth, admin], async (req, res) => {
 // @access  Public
 router.get("/:id", async (req, res) => {
   try {
-    const identifier = asCleanString(req.params.id).toLowerCase();
-    let product = null;
-
-    if (mongoose.Types.ObjectId.isValid(req.params.id)) {
-      product = await Product.findById(req.params.id);
-    }
-
-    if (!product && identifier) {
-      product = await Product.findOne({ slug: identifier });
-    }
+    const product = await findProductByIdentifier(req.params.id);
 
     if (!product) {
       return res.status(404).json({
@@ -1966,7 +1969,7 @@ router.post(
   [auth, admin, upload.sourceUpload.single("sourceFile")],
   async (req, res) => {
     try {
-      const product = await Product.findById(req.params.id);
+      const product = await findProductByIdentifier(req.params.id);
 
       if (!product) {
         return res.status(404).json({
@@ -2045,7 +2048,7 @@ router.post("/", [auth, admin], async (req, res) => {
 // @access  Private/Admin
 router.put("/:id", [auth, admin], async (req, res) => {
   try {
-    const existingProduct = await Product.findById(req.params.id);
+    const existingProduct = await findProductByIdentifier(req.params.id);
 
     if (!existingProduct) {
       return res.status(404).json({
@@ -2072,7 +2075,7 @@ router.put("/:id", [auth, admin], async (req, res) => {
           },
         });
 
-    const product = await Product.findByIdAndUpdate(req.params.id, payload, {
+    const product = await Product.findByIdAndUpdate(existingProduct._id, payload, {
       new: true,
       runValidators: true,
     });
@@ -2101,7 +2104,7 @@ router.put("/:id", [auth, admin], async (req, res) => {
 // @access  Private/Admin
 router.delete("/:id", [auth, admin], async (req, res) => {
   try {
-    const product = await Product.findByIdAndDelete(req.params.id);
+    const product = await findProductByIdentifier(req.params.id);
 
     if (!product) {
       return res.status(404).json({
@@ -2109,6 +2112,8 @@ router.delete("/:id", [auth, admin], async (req, res) => {
         message: "Product not found",
       });
     }
+
+    await Product.findByIdAndDelete(product._id);
 
     res.json({
       success: true,
@@ -2136,8 +2141,17 @@ router.put("/:id/images", [auth, admin], async (req, res) => {
       });
     }
 
+    const existingProduct = await findProductByIdentifier(req.params.id);
+
+    if (!existingProduct) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
     const product = await Product.findByIdAndUpdate(
-      req.params.id,
+      existingProduct._id,
       { images },
       { new: true, runValidators: true },
     );
@@ -2176,8 +2190,17 @@ router.put("/:id/datasheet", [auth, admin], async (req, res) => {
       });
     }
 
+    const existingProduct = await findProductByIdentifier(req.params.id);
+
+    if (!existingProduct) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
     const product = await Product.findByIdAndUpdate(
-      req.params.id,
+      existingProduct._id,
       { datasheet },
       { new: true, runValidators: true },
     );
