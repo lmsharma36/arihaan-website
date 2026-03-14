@@ -313,27 +313,21 @@ body {
 }
 
 .brand-logo {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.92);
   width: 140px;
   min-height: 44px;
   padding: 0.6rem 0.75rem;
   border-radius: 6px;
-  color: white;
+  color: #14213d;
   font-weight: 600;
   font-size: 0.95rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   box-sizing: border-box;
   white-space: nowrap;
-}
-
-.brand-logo:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-3px);
 }
 
 .hero-stats {
