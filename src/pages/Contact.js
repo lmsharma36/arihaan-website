@@ -67,9 +67,17 @@ const Contact = () => {
     setErrorMessage("");
 
     try {
+      const selectedOption = countryCodeOptions.find(
+        (opt) => opt.value === countryCode,
+      );
+      const countryName = selectedOption
+        ? selectedOption.label.replace(/ \(.*\)$/, "").trim()
+        : "";
+
       const payload = {
         ...formData,
-        phone: `${countryCode} ${formData.phone}`.trim(),
+        countryCode,
+        countryName,
       };
 
       const result = await contact.submit(payload);

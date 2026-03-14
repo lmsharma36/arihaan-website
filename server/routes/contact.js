@@ -9,12 +9,14 @@ const admin = require('../middleware/admin');
 // @access  Public
 router.post('/', async (req, res) => {
   try {
-    const { name, email, phone, message } = req.body;
+    const { name, email, phone, countryCode, countryName, message } = req.body;
 
     const contact = await Contact.create({
       name,
       email,
       phone,
+      countryCode,
+      countryName,
       message
     });
 
