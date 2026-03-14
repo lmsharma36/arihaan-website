@@ -3,6 +3,7 @@ import SeoHead from "../components/SeoHead";
 import "../styles/Contact.css";
 import { contact } from "../services/api";
 import { buildAbsoluteUrl } from "../utils/seo";
+import countryCodeOptions from "../data/countryCodeOptions.json";
 
 const contactStructuredData = {
   "@context": "https://schema.org",
@@ -14,6 +15,12 @@ const contactStructuredData = {
     name: "ARIHAAN ENTERPRISES",
     telephone: "+91 92270 53200",
     email: "sales@arihaanenterprises.com",
+    taxID: "24MDBPS1939J1Z3",
+    identifier: {
+      "@type": "PropertyValue",
+      name: "UDYAM Registration Number",
+      value: "UDYAM-GJ-01-0433050",
+    },
     address: {
       "@type": "PostalAddress",
       streetAddress:
@@ -25,18 +32,6 @@ const contactStructuredData = {
     },
   },
 };
-
-const COUNTRY_CODE_OPTIONS = [
-  { value: "+91", label: "India (+91)" },
-  { value: "+1", label: "USA/Canada (+1)" },
-  { value: "+44", label: "UK (+44)" },
-  { value: "+61", label: "Australia (+61)" },
-  { value: "+65", label: "Singapore (+65)" },
-  { value: "+971", label: "UAE (+971)" },
-  { value: "+966", label: "Saudi Arabia (+966)" },
-  { value: "+974", label: "Qatar (+974)" },
-  { value: "+968", label: "Oman (+968)" },
-];
 
 const Contact = () => {
   const [countryCode, setCountryCode] = useState("+91");
@@ -204,6 +199,18 @@ const Contact = () => {
                 </p>
               </div>
             </div>
+
+            <div className="contact-item">
+              <span className="icon">🏢</span>
+              <div>
+                <strong>Company Registrations</strong>
+                <p>
+                  GSTIN: 24MDBPS1939J1Z3
+                  <br />
+                  UDYAM Reg No: UDYAM-GJ-01-0433050
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -252,7 +259,7 @@ const Contact = () => {
                   disabled={loading}
                   aria-label="Country code"
                 >
-                  {COUNTRY_CODE_OPTIONS.map((option) => (
+                  {countryCodeOptions.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.label}
                     </option>

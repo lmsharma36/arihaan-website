@@ -128,6 +128,21 @@
 .contact-page .country-code-select {
   flex: 0 0 170px;
   max-width: 50%;
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 1rem;
+  color: var(--text-dark);
+  background: #fff;
+  transition: all 0.3s;
+}
+
+.contact-page .country-code-select:focus {
+  outline: none;
+  border-color: var(--primary-orange);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
 }
 
 .contact-page .phone-input-row input[name="phone"] {

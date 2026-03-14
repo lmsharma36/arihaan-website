@@ -122,6 +122,8 @@ const Footer = () => {
           <ul>
             <li>📞 +91 92270 53200</li>
             <li>✉️ sales@arihaanenterprises.com</li>
+            <li>GSTIN: 24MDBPS1939J1Z3</li>
+            <li>UDYAM Reg No: UDYAM-GJ-01-0433050</li>
             <li>
               14TH FLOOR, B-1 1403, SANGATH PURE,
               <br />
