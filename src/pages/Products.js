@@ -63,6 +63,17 @@ const readPendingProductRestore = () => {
 const clearPendingProductRestore = () => {
   try {
     sessionStorage.removeItem(PRODUCTS_PENDING_RESTORE_KEY);
+
+  const savePendingProductRestore = (productId) => {
+    try {
+      sessionStorage.setItem(
+        PRODUCTS_PENDING_RESTORE_KEY,
+        JSON.stringify({ productId: String(productId || "") }),
+      );
+    } catch (error) {
+      // ignore storage errors
+    }
+  };
   } catch (error) {
     // ignore storage errors
   }
@@ -119,6 +130,7 @@ const Products = () => {
   const filterToggleRef = useRef(null);
   const [mobileFilterToggleHeight, setMobileFilterToggleHeight] = useState(0);
   const pageParam = searchParams.get("page");
+  const pendingRestoreRef = useRef(null);
 
   const categories = [
     {
@@ -417,6 +429,91 @@ const Products = () => {
       window.clearTimeout(timerId);
     };
   }, [location, navigate, navigationType]);
+
+  // Capture the restore intent when navigating back
+  useEffect(() => {
+    let restoreTarget = location.state?.restoreScrollTarget;
+    let restoreProductId = location.state?.restoreProductId;
+
+    if (!restoreTarget && navigationType === "POP") {
+      const pendingRestore = readPendingProductRestore();
+      if (pendingRestore?.productId) {
+        restoreTarget = PRODUCTS_RESTORE_PRODUCT_TARGET;
+        restoreProductId = pendingRestore.productId;
+      }
+    }
+
+    if (restoreTarget) {
+      pendingRestoreRef.current = { restoreTarget, restoreProductId };
+    } else {
+      pendingRestoreRef.current = null;
+      clearPendingProductRestore();
+    }
+  }, [location, navigationType]);
+
+  // Execute scroll once products are loaded
+  useEffect(() => {
+    if (!isProductsLoaded || !pendingRestoreRef.current) return;
+
+    const { restoreTarget, restoreProductId: restoreProductIdFromState } =
+      pendingRestoreRef.current;
+    pendingRestoreRef.current = null;
+
+    const doScroll = () => {
+      const restoreProductId = String(restoreProductIdFromState || "").trim();
+      let targetElement = null;
+
+      if (
+        restoreTarget === PRODUCTS_RESTORE_PRODUCT_TARGET &&
+        restoreProductId
+      ) {
+        const sanitizedProductId = restoreProductId.replace(/"/g, '\\"');
+        targetElement = document.querySelector(
+          `.product-card[data-product-id="${sanitizedProductId}"]`,
+        );
+      }
+
+      if (!targetElement && restoreTarget === PRODUCTS_RESTORE_SCROLL_TARGET) {
+        targetElement =
+          document.querySelector(".pagination.pagination-top") ||
+          document.querySelector(".products-info");
+      }
+
+      if (!targetElement) {
+        targetElement = document.querySelector(".products-info");
+      }
+
+      if (targetElement) {
+        const productsPage = document.querySelector(".products-page");
+        const isPinned = productsPage?.classList.contains("filters-pinned");
+        const navHeight = document.querySelector(".navbar")?.offsetHeight || 0;
+        const desktopFiltersHeight =
+          document.querySelector(".filters-section")?.offsetHeight || 0;
+        const mobileToggleHeight =
+          document.querySelector(".filter-toggle-container")?.offsetHeight || 0;
+        const activeFilterHeight = isPinned
+          ? window.innerWidth <= 720
+            ? mobileToggleHeight
+            : desktopFiltersHeight
+          : 0;
+        const top =
+          targetElement.getBoundingClientRect().top +
+          window.scrollY -
+          (navHeight + activeFilterHeight + 8);
+        window.scrollTo({ top: Math.max(0, top), left: 0, behavior: "auto" });
+      }
+
+      navigate(
+        { pathname: location.pathname, search: location.search },
+        { replace: true, state: {} },
+      );
+      clearPendingProductRestore();
+    };
+
+    const timerId = window.setTimeout(doScroll, 60);
+    return () => window.clearTimeout(timerId);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isProductsLoaded]);
 
   const clearFilters = () => {
     setSelectedCategory("");
@@ -879,6 +976,7 @@ const Products = () => {
                       if (e.target.closest("a") || e.target.closest("button"))
                         return;
                       saveProductsPage(currentPage);
+                      savePendingProductRestore(productId);
                       navigate(productPath, {
                         state: buildDetailNavigationState(productId),
                       });
@@ -886,6 +984,7 @@ const Products = () => {
                     onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") {
                         saveProductsPage(currentPage);
+                        savePendingProductRestore(productId);
                         navigate(productPath, {
                           state: buildDetailNavigationState(productId),
                         });
@@ -966,7 +1065,7 @@ const Products = () => {
                           to={productPath}
                           state={buildDetailNavigationState(productId)}
                           className="btn-view"
-                          onClick={() => saveProductsPage(currentPage)}
+                          onClick={() => { saveProductsPage(currentPage); savePendingProductRestore(productId); }}
                         >
                           View Details
                         </Link>
