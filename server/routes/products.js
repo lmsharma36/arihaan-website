@@ -1785,6 +1785,7 @@ const normalizeProduct = (product = {}) => {
       }
       const trimmed = String(f).trim();
       return trimmed;
+    })
     .filter(Boolean);
 
   // Deduplicate while keeping all relevant features.
