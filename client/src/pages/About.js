@@ -14,7 +14,7 @@ const About = () => {
 
       <section className="page-header">
         <h1>About ARIHAAN ENTERPRISES</h1>
-        <p>Your trusted partner in workplace safety since [Year]</p>
+        <p>Your trusted partner in workplace safety since 2022</p>
       </section>
 
       <section className="about-content">
@@ -52,6 +52,18 @@ const About = () => {
             <li>✓ Competitive pricing with bulk order discounts</li>
             <li>✓ Pan-India delivery network</li>
             <li>✓ Quality assurance and warranty support</li>
+          </ul>
+        </div>
+
+        <div className="about-section">
+          <h2>Company Registrations</h2>
+          <ul className="why-list registration-list">
+            <li>
+              <strong>GSTIN:</strong> 24MDBPS1939J1Z3
+            </li>
+            <li>
+              <strong>UDYAM Reg No:</strong> UDYAM-GJ-01-0433050
+            </li>
           </ul>
         </div>
 

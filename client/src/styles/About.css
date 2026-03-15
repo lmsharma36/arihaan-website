@@ -1,0 +1,9 @@
+/* About styles - import from App.css */
+
+.registration-list li {
+  letter-spacing: 0.3px;
+}
+
+.registration-list strong {
+  margin-right: 0.4rem;
+}

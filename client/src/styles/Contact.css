@@ -201,10 +201,53 @@
     flex-basis: 44%;
     max-width: 44%;
   }
+
+  /* Reduce horizontal padding so form fields have full width on mobile */
+  .contact-page .contact-form-container {
+    padding: 1.5rem 1.25rem;
+    border-radius: 10px;
+  }
+
+  .contact-page .contact-form-container h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Give form fields a bit more breathing room */
+  .contact-page .contact-form {
+    gap: 1.1rem;
+  }
+
+  .contact-page .form-group input,
+  .contact-page .form-group textarea {
+    padding: 0.85rem 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .contact-page .submit-btn {
+    padding: 1rem;
+  }
+
+  /* Ease side padding on the overall contact section */
+  .contact-page .contact-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
 }
 
 @media (max-width: 480px) {
   .contact-page .contact-item:hover {
     transform: none;
+  }
+
+  .contact-page .contact-form-container {
+    padding: 1.25rem 1rem;
+  }
+
+  .contact-page .country-code-select {
+    flex-basis: 48%;
+    max-width: 48%;
   }
 }

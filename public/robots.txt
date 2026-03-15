@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /login
-Disallow: /products/new
-
-Sitemap: https://arihaanenterprises.in/sitemap.xml

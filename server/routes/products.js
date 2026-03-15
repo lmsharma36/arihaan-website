@@ -947,7 +947,7 @@ const shortenFeatureSentence = (value = "") => {
   if (lowered.includes("working at height"))
     return "Suitable for working at height";
 
-  return feature.slice(0, 60).trim();
+  return feature.length > 300 ? feature.slice(0, 297) + "..." : feature;
 };
 
 const toStrictFeatures = (value) =>
@@ -1784,8 +1784,7 @@ const normalizeProduct = (product = {}) => {
         if (rule.match.test(f)) return rule.out;
       }
       const trimmed = String(f).trim();
-      return trimmed.length > 60 ? trimmed.substring(0, 60) : trimmed;
-    })
+      return trimmed;
     .filter(Boolean);
 
   // Deduplicate while keeping all relevant features.
@@ -2064,8 +2063,25 @@ router.put("/:id", [auth, admin], async (req, res) => {
     const updateMode = asCleanString(req.query?.mode).toLowerCase();
     const useReplaceMode = updateMode === "replace" || updateMode === "full";
 
+    const mergedForReplace = { ...nextPayload };
+
+    // In replace mode, preserve existing images/datasheet when the incoming
+    // payload has none — this prevents uploads from disappearing if the
+    // client-side JSON omits them.
+    if (useReplaceMode) {
+      if (
+        !Array.isArray(mergedForReplace.images) ||
+        mergedForReplace.images.length === 0
+      ) {
+        mergedForReplace.images = existingPayload.images || [];
+      }
+      if (!asCleanString(mergedForReplace.datasheet)) {
+        mergedForReplace.datasheet = asCleanString(existingPayload.datasheet);
+      }
+    }
+
     const payload = useReplaceMode
-      ? normalizeProduct(nextPayload)
+      ? normalizeProduct(mergedForReplace)
       : normalizeProduct({
           ...existingPayload,
           ...nextPayload,
@@ -2075,10 +2091,14 @@ router.put("/:id", [auth, admin], async (req, res) => {
           },
         });
 
-    const product = await Product.findByIdAndUpdate(existingProduct._id, payload, {
-      new: true,
-      runValidators: true,
-    });
+    const product = await Product.findByIdAndUpdate(
+      existingProduct._id,
+      payload,
+      {
+        new: true,
+        runValidators: true,
+      },
+    );
 
     if (!product) {
       return res.status(404).json({

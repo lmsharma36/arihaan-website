@@ -1,0 +1,42 @@
+{
+  "name": "arihaan-enterprises-react",
+  "version": "1.0.0",
+  "description": "ARIHAAN ENTERPRISES - Premium PPE Supplier Website",
+  "private": true,
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^6.30.3",
+    "react-scripts": "^5.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "scripts": {
+    "free-ports": "node scripts/free-ports.js 3000 5000",
+    "start": "set NODE_OPTIONS=--no-deprecation&&set HOST=0.0.0.0&&react-scripts start",
+    "start:mobile": "node scripts/start-mobile.js",
+    "prebuild": "node scripts/generate-sitemap.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

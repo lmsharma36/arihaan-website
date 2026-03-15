@@ -1,49 +1,18 @@
 {
-  "name": "arihaan-enterprises-react",
+  "name": "arihaan-enterprises",
   "version": "1.0.0",
-  "description": "ARIHAAN ENTERPRISES - Premium PPE Supplier Website",
+  "description": "ARIHAAN ENTERPRISES – monorepo root. React client is in client/, Node.js server is in server/.",
   "private": true,
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-icons": "^5.5.0",
-    "react-router-dom": "^6.30.3",
-    "react-scripts": "^5.0.1"
-  },
-  "devDependencies": {
-    "concurrently": "^9.2.1"
-  },
   "scripts": {
-    "free-ports": "node scripts/free-ports.js 3000 5000",
-    "start": "set NODE_OPTIONS=--no-deprecation&&set HOST=0.0.0.0&&react-scripts start",
-    "start:mobile": "node scripts/start-mobile.js",
-    "prebuild": "node scripts/generate-sitemap.js",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "cd server && npm start",
-    "server:dev": "cd server && npm run dev",
-    "server:start:mobile": "cd server && npm run start:mobile",
-    "dev": "npm run free-ports && set NODE_OPTIONS=--no-deprecation&&concurrently \"npm start\" \"npm run server:dev\"",
-    "dev:mobile": "npm run free-ports && set NODE_OPTIONS=--no-deprecation&&concurrently \"npm run start:mobile\" \"npm run server:start:mobile\"",
-    "install:server": "cd server && npm install"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "install:client": "cd client && npm install",
+    "install:server": "cd server && npm install",
+    "install:all": "npm run install:client && npm run install:server",
+    "start:client": "cd client && npm start",
+    "start:server": "cd server && npm run dev",
+    "free-ports": "node client/scripts/free-ports.js 3000 5000",
+    "dev": "npm run free-ports && set NODE_OPTIONS=--no-deprecation&&npx concurrently \"npm run start:client\" \"npm run start:server\"",
+    "dev:mobile": "npm run free-ports && set NODE_OPTIONS=--no-deprecation&&npx concurrently \"cd client && npm run start:mobile\" \"cd server && npm run start:mobile\"",
+    "build": "cd client && npm run build",
+    "test:client": "cd client && npm test"
   }
 }
-
