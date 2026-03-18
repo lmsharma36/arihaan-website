@@ -85,7 +85,7 @@ const Home = () => {
 
   const features = [
     {
-      icon: "✓",
+      icon: "✅",
       title: "100% Genuine Products",
       description:
         "All products sourced through trusted supply channels with proper certifications.",
@@ -133,6 +133,7 @@ const Home = () => {
 
       {/* Hero Section */}
       <section className="hero">
+        <div className="hero-grid-pattern" aria-hidden="true"></div>
         <div className="hero-content">
           <div className="hero-text">
             <div className="company-tagline">ARIHAAN ENTERPRISES</div>
@@ -177,12 +178,13 @@ const Home = () => {
 
       {/* Features Section */}
       <section className="features-section">
-        <div className="section-header">
-          <div className="section-label">Why Choose ARIHAAN</div>
+        <div className="section-header centered">
+          <div className="section-label">Why Choose ARIHAAN ENTERPRISES</div>
           <h2 className="section-title">Your Safety is Our Priority</h2>
           <p className="section-description">
-            We don't just sell safety equipment, we ensure your complete
-            workplace safety with quality products and expert guidance.
+            We don't just sell safety equipment — we ensure your complete
+            workplace safety with genuine products, expert guidance, and
+            reliable pan-India supply.
           </p>
         </div>
         <div className="features-grid">

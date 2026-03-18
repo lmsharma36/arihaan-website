@@ -6,6 +6,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const navLinksRef = useRef(null);
@@ -56,6 +57,8 @@ const Navbar = () => {
         return;
       }
 
+      setIsScrolled(currentScrollY > 10);
+
       if (currentScrollY <= 10) {
         setIsHidden(false);
       } else if (
@@ -87,7 +90,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar ${isHidden ? "hidden" : ""}`}>
+    <nav
+      className={`navbar ${isHidden ? "hidden" : ""} ${isScrolled ? "scrolled" : ""}`}
+    >
       <div className="nav-container">
         <Link to="/" className="logo">
           ARIHAAN <span>ENTERPRISES</span>

@@ -129,20 +129,22 @@
   flex: 0 0 170px;
   max-width: 50%;
   width: 100%;
-  padding: 1rem;
-  border: 2px solid #e9ecef;
-  border-radius: 6px;
-  font-family: "Work Sans", sans-serif;
-  font-size: 1rem;
-  color: var(--text-dark);
-  background: #fff;
-  transition: all 0.3s;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--mist, #e2e8f0);
+  border-radius: var(--radius-sm, 6px);
+  font-family: var(--font-sans, "Inter", sans-serif);
+  font-size: 0.9rem;
+  color: var(--navy, #0d1b2a);
+  background: var(--snow, #f8fafc);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .contact-page .country-code-select:focus {
   outline: none;
-  border-color: var(--primary-orange);
-  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+  border-color: var(--brand-blue, #0052cc);
+  box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1);
 }
 
 .contact-page .phone-input-row input[name="phone"] {

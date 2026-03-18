@@ -13,8 +13,10 @@ const About = () => {
       />
 
       <section className="page-header">
-        <h1>About ARIHAAN ENTERPRISES</h1>
-        <p>Your trusted partner in workplace safety since 2022</p>
+        <div className="page-header-inner">
+          <h1>About ARIHAAN ENTERPRISES</h1>
+          <p>Your trusted partner in workplace safety since 2022</p>
+        </div>
       </section>
 
       <section className="about-content">

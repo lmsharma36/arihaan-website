@@ -1,28 +1,22 @@
-/* Navbar styles - import from App.css */
+/* Navbar supplemental styles - main styles in App.css */
 
 /* Logout button in nav-links */
 .nav-links .logout-btn {
   background: none;
   border: none;
-  color: var(--primary-orange);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: "Space Grotesk", sans-serif;
-  transition: color 0.3s ease;
-  padding: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+  padding: 0.5rem 0.875rem;
+  border-radius: 6px;
 }
 
 .nav-links .logout-btn:hover {
-  color: var(--deep-navy);
-}
-
-/* Logout CTA button */
-.cta-button.logout-cta {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%) !important;
-}
-
-.cta-button.logout-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3) !important;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
 }

@@ -723,15 +723,17 @@ const Products = () => {
 
       {/* Page Header */}
       <section className="page-header">
-        <h1>Our Products</h1>
-        <p>Complete range of safety equipment from world's leading brands</p>
-        {isAdmin && (
-          <div className="products-header-actions">
-            <Link to="/products/new" className="add-product-cta">
-              + Add New Product
-            </Link>
-          </div>
-        )}
+        <div className="page-header-inner">
+          <h1>Our Products</h1>
+          <p>Complete range of safety equipment from world's leading brands</p>
+          {isAdmin && (
+            <div className="products-header-actions">
+              <Link to="/products/new" className="add-product-cta">
+                + Add New Product
+              </Link>
+            </div>
+          )}
+        </div>
       </section>
 
       {/* Filter Toggle Button */}

@@ -33,11 +33,13 @@ const Brands = () => {
       />
 
       <section className="page-header dark">
-        <h1>Our Trusted Brands</h1>
-        <p>
-          Trusted supplier of world's most reputed safety equipment
-          manufacturers
-        </p>
+        <div className="page-header-inner">
+          <h1>Our Trusted Brands</h1>
+          <p>
+            Trusted supplier of world's most reputed safety equipment
+            manufacturers
+          </p>
+        </div>
       </section>
 
       <section className="brands-section">

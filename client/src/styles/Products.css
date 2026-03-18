@@ -170,8 +170,12 @@
   width: 100%;
   flex: 1 1 auto;
   padding: 12px 16px;
-  background: linear-gradient(135deg, var(--deep-navy), var(--slate-blue));
-  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--navy, #0d1b2a),
+    var(--brand-blue, #0052cc)
+  );
+  color: #fff;
   border: none;
   border-radius: 10px;
   font-weight: 600;
@@ -239,18 +243,20 @@
 }
 
 .apply-filters-btn {
-  padding: 0.8rem 2rem;
+  padding: 0.625rem 1.5rem;
   background: var(--deep-navy);
   color: white;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  min-height: 49px;
+  border: 1px solid var(--deep-navy);
+  border-radius: var(--radius-sm, 6px);
+  height: 40px;
   box-sizing: border-box;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.25s ease;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  white-space: nowrap;
 }
 
 .apply-filters-btn:hover {

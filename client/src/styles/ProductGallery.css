@@ -77,16 +77,16 @@
 }
 
 .thumbnail:hover {
-  border-color: var(--primary-orange);
+  border-color: var(--brand-blue, #0052cc);
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 82, 204, 0.22);
 }
 
 .thumbnail.active {
-  border-color: var(--primary-orange);
+  border-color: var(--brand-blue, #0052cc);
   box-shadow:
-    0 0 0 3px rgba(249, 115, 22, 0.2),
-    0 4px 12px rgba(249, 115, 22, 0.26);
+    0 0 0 3px rgba(0, 82, 204, 0.18),
+    0 4px 12px rgba(0, 82, 204, 0.22);
 }
 
 .datasheet-section {
@@ -98,8 +98,12 @@
 .btn-datasheet {
   flex: 1;
   padding: 1rem;
-  background: linear-gradient(135deg, var(--deep-navy), var(--slate-blue));
-  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--navy, #0d1b2a),
+    var(--brand-blue, #0052cc)
+  );
+  color: #fff;
   border: none;
   border-radius: 10px;
   font-weight: 600;
@@ -108,7 +112,7 @@
   transition: all 0.3s;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-family: var(--font-body);
+  font-family: var(--font-sans, sans-serif);
   text-decoration: none;
   display: inline-block;
   text-align: center;

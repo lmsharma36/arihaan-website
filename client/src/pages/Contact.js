@@ -114,8 +114,10 @@ const Contact = () => {
       />
 
       <section className="page-header">
-        <h1>Contact Us</h1>
-        <p>Get in touch for quotes, bulk orders, or safety consultation</p>
+        <div className="page-header-inner">
+          <h1>Contact Us</h1>
+          <p>Get in touch for quotes, bulk orders, or safety consultation</p>
+        </div>
       </section>
 
       <section className="contact-content">

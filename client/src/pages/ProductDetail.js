@@ -1505,6 +1505,18 @@ const ProductDetail = () => {
             </div>
           </div>
 
+          <div className="product-actions">
+            <Link to="/contact" className="btn-enquiry-primary">
+              📧 Send Enquiry
+            </Link>
+            <button className="btn-call" onClick={handleCallUs}>
+              📞 Call Us
+            </button>
+            <button className="btn-whatsapp" onClick={handleShareWhatsApp}>
+              💬 Share on WhatsApp
+            </button>
+          </div>
+
           <p className="product-description">{product.description}</p>
 
           {shouldShowVariantControls && (
@@ -1637,18 +1649,6 @@ const ProductDetail = () => {
               </div>
             </div>
           )}
-
-          <div className="product-actions">
-            <Link to="/contact" className="btn-enquiry-primary">
-              📧 Send Enquiry
-            </Link>
-            <button className="btn-call" onClick={handleCallUs}>
-              📞 Call Us
-            </button>
-            <button className="btn-whatsapp" onClick={handleShareWhatsApp}>
-              💬 Share on WhatsApp
-            </button>
-          </div>
         </div>
       </section>
 

@@ -55,11 +55,13 @@ const Industries = () => {
       />
 
       <section className="page-header">
-        <h1>Industries We Serve</h1>
-        <p>
-          Specialized PPE solutions for diverse industry requirements across
-          India
-        </p>
+        <div className="page-header-inner">
+          <h1>Industries We Serve</h1>
+          <p>
+            Specialized PPE solutions for diverse industry requirements across
+            India
+          </p>
+        </div>
       </section>
 
       <section className="industries-section">
